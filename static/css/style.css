@@ -1,0 +1,489 @@
+/* === MAIN SECTION (NO BOOTSTRAP) === */
+
+/* Основной контейнер */
+main.content {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* --- Карусель --- */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto 40px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-img {
+  min-width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Кнопки переключения карусели */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  color: #ff1493;
+  border: none;
+  font-size: 2rem;
+  padding: 8px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: #ff69b4;
+  color: white;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* --- Заголовки и тексты --- */
+h1, h2, h3 {
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.content p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- Кнопки --- */
+a.btn-primary, 
+button.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-primary:hover,
+button.btn:hover {
+  background: #ff1493;
+  transform: translateY(-2px);
+}
+
+/* --- Карточки продуктов --- */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  flex: 1 1 300px;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(255,105,180,0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* --- FAQ (аккордеон) --- */
+.accordion {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.accordion-question {
+  background: #ffb6c1;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.accordion-question:hover {
+  background: #ff9aae;
+}
+
+.accordion-answer {
+  background: #fff;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 12px;
+  transition: max-height 0.4s ease, opacity 0.35s ease, padding 0.35s ease;
+}
+
+.accordion-answer.open {
+  max-height: 400px;
+  opacity: 1;
+  padding: 12px;
+}
+
+/* --- Поиск --- */
+.search-box {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search-box input {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ff69b4;
+  font-size: 16px;
+}
+
+/* --- Progress bar --- */
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: rgba(255,182,193,0.3);
+  z-index: 9999;
+}
+
+.progress-bar {
+  height: 6px;
+  width: 0;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  transition: width 0.25s ease-out;
+}
+
+/* === 📱 MOBILE STYLES (до 480px) === */
+@media (max-width: 480px) {
+
+  main.content {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* --- Карусель --- */
+  .carousel {
+    width: 95%; /* не 100%, а 95% экрана — безопаснее */
+    max-width: 360px; /* ограничение чтобы не растягивалось больше нужного */
+    margin: 10px auto 30px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.6s ease;
+  }
+
+  .carousel-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .carousel-btn {
+    font-size: 1.4rem;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #ff1493;
+  }
+
+  /* --- Поиск --- */
+  .search-box {
+    margin: 10px 0;
+  }
+
+  .search-box input {
+    width: 95%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  /* --- Карточки продуктов --- */
+  .row {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 340px;
+    flex: none;
+    margin: 0 auto;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    height: 160px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  .btn, a.btn-primary {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* --- FAQ --- */
+  .accordion {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+
+  .accordion-question {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .accordion-answer {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  /* --- Progress bar --- */
+  .progress-container {
+    height: 4px;
+  }
+
+  .progress-bar {
+    height: 4px;
+  }
+
+  /* --- Команда (About) --- */
+  .about-section {
+    padding: 20px 10px;
+  }
+
+  .team-title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .team-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .team-card {
+    width: 90%;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .team-photo {
+    height: 220px;
+    border-radius: 10px;
+  }
+
+  .team-name {
+    font-size: 1.1rem;
+    margin-top: 8px;
+  }
+
+  .team-desc {
+    font-size: 0.9rem;
+  }
+
+  /* --- Меню навигации --- */
+  header nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding: 0;
+  }
+
+  header nav ul li a {
+    font-size: 0.95rem;
+    padding: 6px 0;
+  }
+
+  /* --- Sidebar --- */
+  #sidebar {
+    display: none;
+  }
+
+  footer {
+    font-size: 0.85rem;
+    padding: 8px 0;
+  }
+}
+
+/* style dark */
+
+.dark-mode h3, .dark-mode h2, .dark-mode h1 {
+  color: #f5f5f5;
+}
+
+.dark-mode .team-card{
+  background-color: #999999;
+  border: #555555 1.5px solid;
+}
+
+
+
+
+/* about */
+
+
+
+
+/* About section */
+.about-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.team-section {
+  margin-top: 40px;
+}
+
+.team-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* Flexbox row of cards */
+.team-list {
+  display: flex;
+  flex-wrap: wrap; /* allows cards to wrap on small screens */
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Each card */
+.team-card {
+  flex: 1 1 280px; /* flexible, min 280px */
+  max-width: 320px;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(180,180,180,0.07);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Team photo */
+ .team-photo {
+    width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+    border-radius: 12px;
+  }
+
+/* Text inside card */
+.team-info {
+  text-align: center;
+}
+
+.team-name {
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  color: #222;
+  font-weight: 700;
+}
+
+.team-desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+

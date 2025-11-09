@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moti-Moti | Desserts</title>
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/style_zeres.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="static/js/general.js" defer></script>
+<script src="" defer></script>
+
+  <div class="layout_container">
+    <!----------HEADER---------->
+    <header>
+      <!-----MOBILE ONLY DROPDOWN MENU----->
+      <div class="topnav">
+        <a href="../index.html" class="active">Moti-Moti</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks" class="menuGrid">
+          <a href="../index.html">Main</a>
+          <a href="../products.html">Products</a>
+          <a href="../gallery.html">Gallery</a>
+          <a href="../delivery.html">Cart</a>
+          <a href="../contacts.html">Contacts</a>
+          <a href="../locations.html">Locations</a>
+          <a href="../about.html">About Us</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-----TABLET AND LAPTOP MENU----->
+      <div id="logo" class="generalLayout">Moti-Moti</div>
+      <nav class="generalLayout">
+        <ul>
+          <li><a href="../index.html">Main</a></li>
+          <li><a href="../delivery.html">Cart</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+          <li><a href="../locations.html">Locations</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!----------SIDEBAR---------->
+    <div id="sidebar" class="generalLayout">
+      <aside class="sidebar">
+        <h2>Categories</h2>
+          <ul>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
+          </ul>
+      </aside>
+    </div>
+
+    <!----------MAIN---------->
+    <main>
+ <div class="progress-container"><div class="progress-bar"></div></div>
+    <h1 class="page-title">Our Sweet Gallery 🍡</h1>
+
+    <div class="buttons">
+      <button class="toggle-btn">Switch to Grid Layout</button>
+      
+    </div>
+
+    <div class="gallery flexbox">
+  <img class="lazy" data-src="../img/moti-1-1024x576.jpg.avif" src="../img/placeholder.png" alt="moti 1">
+  <img class="lazy" data-src="../img/p_O.jpg.png" src="../img/placeholder.png" alt="moti 2">
+  <img class="lazy" data-src="../img/k88xrnwyn0jk4qba3kv01f1yh5gur910.jpg" src="../img/placeholder.png" alt="moti 3">
+  <img class="lazy" data-src="../img/images (3).jpeg" src="../img/placeholder.png" alt="moti 4">
+  <img class="lazy" data-src="../img/241_large.jpg" src="../img/placeholder.png" alt="moti 5">
+  <img class="lazy" data-src="../img/65bc9236de95c.jpg" src="../img/placeholder.png" alt="moti 6">
+</div>
+
+
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+   </main>
+
+    <!----------FOOTER---------->
+    <footer>
+        <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+    </footer>
+  </div>
+
+
+
+  <script>
+    // --- Layout Switcher ---
+    const btn = document.querySelector('.toggle-btn');
+    const gallery = document.querySelector('.gallery');
+    const sound = document.getElementById('clickSound');
+
+    btn.addEventListener('click', () => {
+      gallery.classList.toggle('grid');
+      gallery.classList.toggle('flexbox');
+      btn.textContent = gallery.classList.contains('grid')
+        ? 'Switch to Flex Layout'
+        : 'Switch to Grid Layout';
+      sound.play();
+    });
+
+    // --- Theme Switcher ---
+    
+
+    // --- Lazy Loading using jQuery ---
+    $(window).on("scroll", function() {
+      $(".lazy").each(function() {
+        const imgTop = $(this).offset().top;
+        const windowBottom = $(window).scrollTop() + $(window).height();
+        if (imgTop < windowBottom - 50 && $(this).attr("data-src")) {
+          $(this).attr("src", $(this).attr("data-src"));
+          $(this).removeAttr("data-src").addClass("loaded");
+        }
+      });
+    }).trigger("scroll");
+  </script>
+
+</body>
+</html>

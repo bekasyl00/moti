@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moti-Moti | Desserts</title>
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="static/js/general.js" defer></script>
+<script src="static/js/script_main.js" defer></script>
+
+  <div class="layout_container">
+    <!----------HEADER---------->
+    <header>
+      <!-----MOBILE ONLY DROPDOWN MENU----->
+      <div class="topnav">
+        <a href="../index.html" class="active">Moti-Moti</a>
+        <!-- Navigation links (hidden by default) -->
+         
+        <div id="myLinks" class="menuGrid">
+          <a href="../index.html">Main</a>
+          <a href="../products.html">Products</a>
+          <a href="../gallery.html">Gallery</a>
+          <a href="../delivery.html">Cart</a>
+          <a href="../contacts.html">Contacts</a>
+          <a href="../locations.html">Locations</a>
+          <a href="../about.html">About Us</a>
+          {% if logged_in %}
+        <li><a href="/profile">Profile ({{ username }})</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      {% endif %}
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      
+      <div id="logo" class="generalLayout">Moti-Moti</div>
+      <nav class="generalLayout">
+        <ul>
+          <li><a href="../index.html">Main</a></li>
+          <li><a href="../delivery.html">Cart</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+          <li><a href="../locations.html">Locations</a></li>
+          {% if logged_in %}
+        <li><a href="/profile">Profile ({{ username }})</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <div id="sidebar" class="generalLayout">
+      <aside class="sidebar">
+        <h2>Categories</h2>
+          <ul>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
+          </ul>
+      </aside>
+    </div>
+
+    <!----------MAIN---------->
+    <main>
+       <div class="progress-container"><div class="progress-bar"></div></div>
+       <section class="about-section">
+    <h1>About Us</h1>
+
+    <section class="team-section">
+      <h1 class="team-title">Meet Our Team</h1>
+      <div class="team-list">
+        <!-- Danial -->
+        <div class="team-card">
+          <img class="team-photo" src="../img/danial.jpeg" alt="Danial Khussainov Photo"/>
+          <div class="team-info">
+            <h2 class="team-name">Danial Khussainov</h2>
+            <p class="team-desc">18 y.o. Currently studying at Astana IT University. Striving to become a senior back-end developer and possibly join a game development team.</p>
+          </div>
+        </div>
+        <!-- Zere -->
+        <div class="team-card">
+          <img class="team-photo" src="../img/zere.jpg" alt="Zere Photo"/>
+          <div class="team-info">
+            <h2 class="team-name">Zere</h2>
+            <p class="team-desc">Born in December 2006, from Almaty. Also a student at Astana IT University, dreaming of becoming a software engineer. Passionate about technology and new opportunities.</p>
+          </div>
+        </div>
+        <!-- Mereke -->
+        <div class="team-card">
+          <img class="team-photo" src="../img/mereke.jpg" alt="Mereke Photo"/>
+          <div class="team-info">
+            <h2 class="team-name">Mereke</h2>
+            <p class="team-desc">Born in June 2007. Joined Astana IT University for fun, but now interested in IT and development. Always ready to learn something new.</p>
+          </div>
+        </div>
+        <!-- Bekasyl -->
+        <div class="team-card">
+          <img class="team-photo" src="../img/IMG_2361.jpg" alt="Bekasyl Photo"/>
+          <div class="team-info">
+            <h2 class="team-name">Bekasyl</h2>
+            <p class="team-desc">18 years old, also studies at Astana IT University. Wants to become a back-end developer. Currently working at Rixos President Astana hotel. Has big dreams and goals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+   </main>
+
+    <!----------FOOTER---------->
+    <footer>
+        <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moti-Moti | Desserts</title>
+
+
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap removed completely -->
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+  <script src="static/js/general.js" defer></script>
+  <script src="static/js//script_main.js" defer></script>
+
+  <div class="layout_container">
+    <!-- HEADER -->
+    <header>
+      <div class="topnav">
+        <a href="index.html" class="active">Moti-Moti</a>
+
+        <div id="myLinks" class="menuGrid" aria-hidden="true">
+          <a href="index.html">Main</a>
+          <a href="products.html">Products</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="delivery.html">Cart</a>
+          <a href="contacts.html">Contacts</a>
+          <a href="locations.html">Locations</a>
+          <a href="about.html">About Us</a>
+           <!-- Кнопки для регистрации и логина -->
+<a href="../register.html" class="btn-header" id="regBtn">Registration</a>
+<a href="../login.html" class="btn-header" id="loginBtn">Login</a>
+
+        </div>
+
+        <a href="javascript:void(0);" class="icon" onclick="navDropDown()" aria-label="menu">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+
+      <div id="logo" class="generalLayout">Moti-Moti</div>
+
+      <nav class="generalLayout" id="main-nav" role="navigation" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Main</a></li>
+          <li><a href="delivery.html">Cart</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <!-- Кнопки для регистрации и логина -->
+         {% if logged_in %}
+        <li><a href="/profile">Profile ({{ username }})</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      {% endif %}
+
+        </ul>
+      </nav>
+    </header>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="generalLayout">
+      <aside class="sidebar">
+        <h2>Categories</h2>
+        <ul>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- MAIN -->
+    <main class="content">
+      <div class="progress-container"><div class="progress-bar"></div></div>
+
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search on page...">
+      </div>
+
+      <!-- Welcome -->
+      <section class="welcome-section searchable">
+        <h1>Добро пожаловать в Moti-Moti!</h1>
+        <p>Онлайн-магазин десертов: вкусно, сладко и с любовью 💖</p>
+        <a href="products.html" class="btn-primary">Смотреть товары</a>
+      </section>
+
+      <!-- Carousel (custom, no Bootstrap) -->
+      <div class="carousel" id="mainCarousel" aria-roledescription="carousel">
+        <div class="carousel-inner" id="carouselInner">
+          <img src="static/img/moti-1-1024x576.jpg.avif" class="carousel-img" alt="Dessert 1">
+          <img src="static/img/k88xrnwyn0jk4qba3kv01f1yh5gur910.jpg" class="carousel-img" alt="Dessert 2">
+          <img src="static/img/241_large.jpg" class="carousel-img" alt="Dessert 3">
+        </div>
+
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous slide">❮</button>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Next slide">❯</button>
+      </div>
+
+      <!-- Products -->
+      <section class="products-section searchable">
+        <h2>Our Desserts</h2>
+
+        <div class="row products-grid">
+   
+          <article class="card product-card">
+            <img src="static/img/Без названия (6).jpeg" alt="Strawberry Mochi">
+            <div class="card-body">
+              <h5 class="card-title">Strawberry Mochi</h5>
+              <p class="card-text">Sweet and fruity delight 🍓</p>
+              <a href="products.html#strawberry">
+              <button class="btn">Buy</button></a>
+          
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <img src="static/img/images (2).jpeg" alt="Matcha Cake">
+            <div class="card-body">
+              <h5 class="card-title">Matcha Cake</h5>
+              <p class="card-text">Нежный бисквит с кремом из матча и белого шоколада.</p>
+               <a href="products.html">
+              <button class="btn">Buy</button></a>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <img src="static/img/ice-mochi2.jpg" alt="Ice Mochi">
+            <div class="card-body">
+              <h5 class="card-title">Ice Mochi</h5>
+              <p class="card-text">Refreshing taste ❄️</p>
+                     <a href="products.html">
+              <button class="btn">Buy</button></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ / Accordion -->
+      <section id="faq" class="searchable">
+        <h3>FAQ</h3>
+
+        <div class="accordion">
+          <div class="accordion-item fade-in">
+            <h3 class="accordion-question" role="button" aria-expanded="false" tabindex="0">🍰 How to order?</h3>
+            <div class="accordion-answer content" aria-hidden="true">
+              Just choose your favorite dessert and click “Buy”.
+            </div>
+          </div>
+
+          <div class="accordion-item fade-in">
+            <h3 class="accordion-question" role="button" aria-expanded="false" tabindex="0">🚚 How fast is delivery?</h3>
+            <div class="accordion-answer content" aria-hidden="true">
+              Usually within 1–2 days depending on your location.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <pre>
+
+
+
+
+    </pre>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+    </footer>
+  </div>
+
+  <!-- Minimal carousel JS (works without Bootstrap) -->
+  
+</body>
+<html>

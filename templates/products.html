@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moti-Moti | Desserts</title>
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/style_mereke.css">
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="static/js/general.js" defer></script>
+<script src="static/js/script.js" defer></script>
+
+
+  <div class="layout_container">
+    <!----------HEADER---------->
+    <header>
+      <!-----MOBILE ONLY DROPDOWN MENU----->
+      <div class="topnav">
+        <a href="../index.html" class="active">Moti-Moti</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks" class="menuGrid">
+          <a href="../index.html">Main</a>
+          <a href="../products.html">Products</a>
+          <a href="../gallery.html">Gallery</a>
+          <a href="../delivery.html">Cart</a>
+          <a href="../contacts.html">Contacts</a>
+          <a href="../locations.html">Locations</a>
+          <a href="../about.html">About Us</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      
+      <div id="logo" class="generalLayout">Moti-Moti</div>
+      <nav class="generalLayout">
+        <ul>
+          <li><a href="../index.html">Main</a></li>
+          <li><a href="../delivery.html">Cart</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+          <li><a href="../locations.html">Locations</a></li>
+          {% if logged_in %}
+        <li><a href="/profile">Profile ({{ username }})</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      {% endif %}
+        </ul>
+      </nav>
+    </header>
+  
+    <div id="sidebar" class="generalLayout">
+      <aside class="sidebar">
+        <h2>Categories</h2>
+          <ul>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
+          </ul>
+      </aside>
+    </div>
+
+    <!----------MAIN---------->
+    <main>
+     
+    <section class="container">
+      <div class="center">
+        <h1>Moti-Moti — Наши десерты</h1>
+        <p class="muted">Домашние десерты ручной работы — пирожные, тортики и авторские сладости.</p>
+      </div>
+
+      <section>
+        <h2 style="margin-top:2rem;">Популярные товары</h2>
+        <!-- 🔍 Unified Search Bar with Suggestions -->
+      <div style="position: relative; display: inline-block; width: 50%;">
+        <input
+          type="text"
+          id="searchBar"
+          placeholder="Search desserts..."
+          style="width: 100%; padding: 10px; margin: 20px 0; border: 2px solid #ffb6c1; border-radius: 10px;"
+        />
+        <ul id="suggestions"
+            style="list-style:none; margin:0; padding:0; width:100%; background:#fff; border:1px solid #ffb6c1;
+                   border-radius:10px; position:absolute; z-index:100; display:none; max-height:150px; overflow-y:auto;">
+        </ul>
+      </div>
+
+        <div class="products-grid">
+          
+
+        
+          <!-- Все товары -->
+          
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="../img/Без названия (6).jpeg" alt="Strawberry mochi" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-title">Strawberry mochi</div>
+                <div class="product-desc">Воздушные моти с клубникой.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">1 500 тг</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+         
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="../img/Без названия (8).jpeg" alt="Tiramisu" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-title">Tiramisu</div>
+                <div class="product-desc">Классический итальянский тирамису.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">7 500 тг</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="../img/Без названия (9).jpeg" alt="Dubai chocolate" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-title">Dubai chocolate</div>
+                <div class="product-desc">Безумно вкусный дубайский шоколад.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">9 500 тг</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+          
+
+
+          <div class="product-card" id="strawberry">
+            <div class="product-image">
+              <img src="../img/Без названия (10).jpeg" alt="Strawberry covered chocolate" />
+            </div>
+            <div class="product-info">
+              <div>
+                
+                <div class="product-title">Strawberry covered chocolate</div>
+                <div class="product-desc">Клубника в шоколаде.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">900 тг за шт</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="../img/images (3).jpeg" alt="Zhent covered chocolate" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-title">Zhent covered chocolate</div>
+                <div class="product-desc">Казахский традиционный десерт.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">500 тг за шт</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="../img/Без названия (11).jpeg" alt="PROFITEROLES" />
+            </div>
+            <div class="product-info">
+              <div>
+                <div class="product-title">PROFITEROLES</div>
+                <div class="product-desc">Французский традиционный десерт.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">900 тг за шт</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card for_dark">
+            <div class="product-image">
+              <img src="../img/Без названия (7).jpeg" alt="Mini Tarts" />
+            </div>
+            <div class="product-info">
+              <div class="for_dark">
+                <div class="product-title">Мини-тарты (набор 6)</div>
+                <div class="product-desc">Ассорти: лимонный, малиновый, шоколадный.</div>
+              </div>
+              <div class="product-bottom">
+                <span class="product-price">4 000 тг</span>
+                <a class="add-to-cart" href="#"><span>В корзину</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+   
+
+    </section>
+  <pre>
+
+
+
+    
+  </pre>
+    </main>
+
+    <!----------FOOTER---------->
+    <footer>
+        <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+    </footer>
+  </div>
+</body>
+
+</html>

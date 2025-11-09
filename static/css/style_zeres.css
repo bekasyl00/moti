@@ -1,0 +1,162 @@
+/* --- General Styles --- */
+
+
+/* Night Mode */
+body.night {
+  background: #2b2b2b;
+  color: #fff;
+}
+
+
+
+/* --- Buttons --- */
+button {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+button:hover {
+  transform: scale(1.05);
+}
+
+.toggle-btn, 
+#themeBtn, 
+.review-buttons button, 
+#randomBtn {
+  margin: 10px;
+  padding: 10px 20px;
+  background: #ffb6c1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.toggle-btn:hover, 
+#themeBtn:hover, 
+.review-buttons button:hover, 
+#randomBtn:hover {
+  background: #ff8aa1;
+}
+
+/* --- Page Titles --- */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+  color: #ff4d7d;
+  font-weight: bold;
+}
+
+/* --- Gallery Section --- */
+.gallery.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.gallery.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  justify-items: center;
+}
+
+/* Lazy loading fade-in */
+.gallery img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.8s ease-in, transform 0.3s ease;
+}
+
+.gallery img.loaded {
+  opacity: 1;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+}
+
+/* --- Review Section --- */
+.reviews {
+  max-width: 800px;
+  margin: 100px auto 120px auto;
+  padding: 20px;
+  background: #fffafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.reviews h2 {
+  color: #ff4d7d;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.review {
+  display: none;
+  background: #ffe4ec;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.review.active {
+  display: block;
+  opacity: 1;
+}
+
+.review h3 {
+  margin: 0;
+  color: #c2185b;
+  font-size: 20px;
+}
+
+/* --- Counter Section (Animated Numbers) --- */
+.review-stats {
+  text-align: center;
+  background: #fff0f5;
+  padding: 30px 0;
+  border-radius: 12px;
+  margin: 30px auto;
+  width: 80%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.counter {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff4d7d;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+.review-stats p {
+  color: #c2185b;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .gallery img {
+    width: 90%;
+    height: auto;
+  }
+
+  .review-stats {
+    width: 95%;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+}

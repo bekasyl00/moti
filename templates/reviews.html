@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moti-Moti | Desserts</title>
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/style_zeres.css">
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="static/js/general.js" defer></script>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <div class="layout_container">
+    <!----------HEADER---------->
+    <header>
+      <!-----MOBILE ONLY DROPDOWN MENU----->
+      <div class="topnav">
+        <a href="../index.html" class="active">Moti-Moti</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks" class="menuGrid">
+          <a href="../index.html">Main</a>
+          <a href="../products.html">Products</a>
+          <a href="../gallery.html">Gallery</a>
+          <a href="../delivery.html">Cart</a>
+          <a href="../contacts.html">Contacts</a>
+          <a href="../locations.html">Locations</a>
+          <a href="../about.html">About Us</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!-----TABLET AND LAPTOP MENU----->
+      <div id="logo" class="generalLayout">Moti-Moti</div>
+      <nav class="generalLayout">
+        <ul>
+          <li><a href="../index.html">Main</a></li>
+          <li><a href="../delivery.html">Cart</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+          <li><a href="../locations.html">Locations</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!----------SIDEBAR---------->
+    <div id="sidebar" class="generalLayout">
+      <aside class="sidebar">
+        <h2>Categories</h2>
+          <ul>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
+          </ul>
+      </aside>
+    </div>
+
+    <!----------MAIN---------->
+    <main>
+    <!-- Animated Counter Section -->
+    <section class="review-stats">
+      <div class="counter" data-count="1200">0</div>
+      <p>Happy Customers</p>
+      <div class="counter" data-count="3500">0</div>
+      <p>Orders Delivered</p>
+    </section>
+
+    <div class="reviews">
+      <h2>Customer Reviews 💬</h2>
+
+      <div class="review active">
+        <h3>Anna K.</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>The best mochi I have ever tried! Soft, fresh, and full of flavor. 🍓</p>
+      </div>
+
+      <div class="review">
+        <h3>James L.</h3>
+        <p>⭐⭐⭐⭐</p>
+        <p>Very tasty! Delivery was fast and packaging was beautiful.</p>
+      </div>
+
+      <div class="review">
+        <h3>Sakura M.</h3>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>I love Moti-Moti! Reminds me of my childhood in Japan. 💖</p>
+      </div>
+
+      <div class="review-buttons">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+
+      <button id="randomBtn">🎲 Random Review</button>
+      <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+    </div>
+  </main>
+
+    <!----------FOOTER---------->
+    <footer>
+        <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+    </footer>
+  </div>
+
+  <script>
+    // --- Review Switch ---
+    const reviews = document.querySelectorAll('.review');
+    const sound = document.getElementById('clickSound');
+    let current = 0;
+
+    function showReview(index) {
+      reviews.forEach(r => r.classList.remove('active'));
+      reviews[index].classList.add('active');
+    }
+
+    $('#nextBtn').click(() => {
+      current = (current + 1) % reviews.length;
+      showReview(current);
+      sound.play();
+    });
+
+    $('#prevBtn').click(() => {
+      current = (current - 1 + reviews.length) % reviews.length;
+      showReview(current);
+      sound.play();
+    });
+
+    $('#randomBtn').click(() => {
+      const random = Math.floor(Math.random() * reviews.length);
+      showReview(random);
+      sound.play();
+    });
+
+    // --- Counter Animation with jQuery ---
+    $(document).ready(function(){
+      $('.counter').each(function(){
+        const $this = $(this);
+        const countTo = $this.attr('data-count');
+        $({ countNum: $this.text() }).animate({
+          countNum: countTo
+        }, {
+          duration: 2000,
+          easing: 'linear',
+          step: function() {
+            $this.text(Math.floor(this.countNum));
+          },
+          complete: function() {
+            $this.text(this.countNum + "+");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

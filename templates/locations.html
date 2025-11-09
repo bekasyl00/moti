@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moti-Moti | Desserts</title>
+  <link rel="stylesheet" href="static/css/page_layout.css">
+  <link rel="stylesheet" href="static/css/style_danial.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+<script src="static/js/general.js" defer></script>
+<script src="static/js/delivery.js" defer></script>
+
+<div class="layout_container">
+  <!----------HEADER---------->
+  <header>
+    <!-----MOBILE ONLY DROPDOWN MENU----->
+    <div class="topnav">
+      <a href="../index.html" class="active">Moti-Moti</a>
+      <!-- Navigation links (hidden by default) -->
+      <div id="myLinks" class="menuGrid">
+        <a href="../index.html">Main</a>
+        <a href="../products.html">Products</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../delivery.html">Cart</a>
+        <a href="../contacts.html">Contacts</a>
+        <a href="../locations.html">Locations</a>
+        <a href="../about.html">About Us</a>
+      </div>
+      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+      <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <!-----TABLET AND LAPTOP MENU----->
+    <div id="logo" class="generalLayout">Moti-Moti</div>
+    <nav class="generalLayout">
+      <ul>
+        <li><a href="../index.html">Main</a></li>
+        <li><a href="../delivery.html">Cart</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../contacts.html">Contacts</a></li>
+        <li><a href="../locations.html">Locations</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!----------SIDEBAR---------->
+  <div id="sidebar" class="generalLayout">
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <ul>
+        <li><a href="../products.html">Products</a></li>
+        <li><a href="../gallery.html">Gallery</a></li>
+        <li><a href="../reviews.html">Reviews</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!----------MAIN---------->
+  <main>
+    
+    <div class="location-details">
+      <p id="location-paragraph">Come visit our factory and purchase our luxury sweets straight from the source:</p>
+      <hr style="border: 1px solid white; margin-bottom: 20px;">
+      <h2>Moti-Moti Branches</h2>
+
+      <!-- copy wrapper for the street address -->
+      <div class="copy-wrapper">
+        <p id="location-street" class="m-0">LORUM Ipsum Street</p>
+        <button id="copy-address-btn" class="copy-btn" type="button" aria-label="Copy address">
+          <span class="copy-icon">📋</span>
+          <span class="copy-check" aria-hidden="true">✓</span>
+        </button>
+        <div class="copy-tooltip" aria-hidden="true">Copied to clipboard!</div>
+      </div>
+
+      <p>Astana City, Kazakhstan</p>
+      <p><strong>Phone:</strong> +777-888-90-90</p>
+      <p><strong>Email:</strong> moti-moti@mail.com</p>
+      <p><strong>Hours:</strong> Monday - Friday 10am to 5pm</p>
+    </div>
+
+    <!-- Joke widget: fetch random joke from Official Joke API -->
+    <section id="joke-widget" class="joke-section" aria-live="polite" style="max-width:420px;">
+      <div id="joke-card">
+        <p id="joke-setup" style="font-weight:600;margin:0 0 8px;">Want a joke?</p>
+        <p id="joke-punchline" style="margin:0 0 12px;color:#444;"></p>
+        <div style="display:flex;gap:8px;">
+          <button id="fetch-joke-btn" class="btn" type="button">Get random joke</button>
+          <button id="clear-joke-btn" class="btn" type="button">Clear</button>
+        </div>
+        <p id="joke-error" role="status" aria-live="polite" style="color:#b00;margin:8px 0 0;display:none"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!----------FOOTER---------->
+  <footer>
+    <p>Team SweetCoders | Members: Bekasyl, Mereke, Zere, Danial</p>
+  </footer>
+</div>
+</body>
+
+</html>
