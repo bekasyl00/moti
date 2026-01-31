@@ -24,7 +24,9 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
+                    
                     email TEXT,
+                    phone TEXT,
                     password TEXT,
                     member_since TEXT
                 )''')
@@ -42,6 +44,10 @@ def index():
 @app.route('/products')
 def products():
     return render_template('products.html', logged_in=session.get('user_logged_in', False),
+                           username=session.get('username'))
+@app.route('/reviews')
+def reviews():
+    return render_template('reviews.html', logged_in=session.get('user_logged_in', False),
                            username=session.get('username'))
 
 @app.route('/gallery')
@@ -73,57 +79,81 @@ def about():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     error = None
+
     if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
+        phone = request.form.get('phone')
         password = request.form.get('password')
-        try:
-            conn = sqlite3.connect(DB)
-            c = conn.cursor()
-            c.execute('INSERT INTO users (username, email, password, member_since) VALUES (?, ?, ?, ?)',
-                      (username, email, password, datetime.now().year))
-            conn.commit()
-            session['user_logged_in'] = True
-            session['username'] = username
-            session['email'] = email
-            return redirect('/profile')
-        except sqlite3.IntegrityError:
-            error = "Пользователь с таким именем уже существует"
-        finally:
+
+        conn = sqlite3.connect(DB)
+        c = conn.cursor()
+
+        c.execute("SELECT * FROM users WHERE username = ?", (username,))
+        if c.fetchone():
             conn.close()
+            error = "Имя пользователя уже существует"
+            return render_template('register.html', error=error)
+
+        member_since = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        c.execute(
+            "INSERT INTO users (username, email, phone, password, member_since) VALUES (?, ?, ?, ?, ?)",
+            (username, email, phone, password, member_since)
+        )
+        conn.commit()
+        conn.close()
+
+        # После регистрации сразу логиним пользователя
+        session['user_logged_in'] = True
+        session['username'] = username
+        session['email'] = email
+        session['phone'] = phone
+
+        return redirect('/profile')
+
     return render_template('register.html', error=error)
 
 # --- Логин ---
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        c.execute('SELECT email, password FROM users WHERE username = ?', (username,))
+        # Берем все нужные данные из базы по username
+        c.execute('SELECT email, phone, password FROM users WHERE username = ?', (username,))
         user = c.fetchone()
         conn.close()
-        if user and user[1] == password:
+
+        # user = (email, phone, password)
+        if user and user[2] == password:
             session['user_logged_in'] = True
             session['username'] = username
             session['email'] = user[0]
+            session['phone'] = user[1]
             return redirect('/profile')
         else:
-            error = "Неверный логин или пароль"
+            error = "❌ Неверный логин или пароль"
+
     return render_template('login.html', error=error)
 
-# --- Профиль ---
 @app.route('/profile')
 def profile():
     if not session.get('user_logged_in'):
         return redirect('/login')
+    
+    orders = session.get('orders', [])  # Получаем список заказов из session
+    
     return render_template('profile.html',
                            username=session.get('username'),
                            email=session.get('email'),
                            member_since="2025",
-                           orders=[])
+                           phone=session.get('phone'),
+                           orders=orders)
 
 # --- Выход ---
 @app.route('/logout', methods=['POST'])
@@ -147,6 +177,9 @@ def favicon():
 # --- Обработка заказа ---
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
+    if not session.get('user_logged_in'):
+        return jsonify({"status": "error", "message": "User not logged in"}), 401
+
     data = request.json
     street = data.get('street')
     entrance = data.get('entrance')
@@ -156,7 +189,14 @@ def submit_order():
     comment = data.get('comment')
     cart = data.get('cart', [])
 
+    username = session.get('username')
+    email = session.get('email')
+    phone = session.get('phone')
+
     message = f"🧁 Новый заказ!\n\n" \
+              f"👤 Пользователь: {username}\n" \
+              f"📧 Email: {email}\n" \
+              f"📞 Телефон: {phone}\n" \
               f"📍 Адрес: {street}\n" \
               f"🚪 Подъезд: {entrance}\n" \
               f"🔢 Этаж: {floor}\n" \
@@ -175,8 +215,13 @@ def submit_order():
         print("Ошибка Telegram:", e)
         return jsonify({"status": "error", "message": "Ошибка отправки в Telegram"}), 500
 
-    return jsonify({"status": "success", "message": "Заказ отправлен!"})
+    # сохраняем заказ
+    order_summary = f"{username} ({email}, {phone}): {', '.join([item.get('title') for item in cart])}"
+    if 'orders' not in session:
+        session['orders'] = []
+    session['orders'].append(order_summary)
 
+    return jsonify({"status": "success", "message": "Заказ отправлен!"})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

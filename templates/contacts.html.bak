@@ -5,31 +5,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Moti-Moti | Desserts</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/page_layout.css') }}">
+  <link rel="stylesheet" href="static/css/page_layout.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_mereke.css') }}">
+  <link rel="stylesheet" href="static/css/style_mereke.css">
 </head>
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
-<script src="{{ url_for('static', filename='js/general.js') }}" defer></script>
-<script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+<script src="static/js/general.js" defer></script>
+<script src="static/js/script.js" defer></script>
 
   <div class="layout_container">
 
     <header>
    
       <div class="topnav">
-        <a href="{{ url_for('index') }}" class="active">Moti-Moti</a>
+        <a href="../index.html" class="active">Moti-Moti</a>
       
         <div id="myLinks" class="menuGrid">
-          <a href="{{ url_for('index') }}">Main</a>
-          <a href="{{ url_for('products') }}">Products</a>
-          <a href="{{ url_for('gallery') }}">Gallery</a>
-          <a href="{{ url_for('delivery') }}">Cart</a>
-          <a href="{{ url_for('contacts') }}">Contacts</a>
-          <a href="{{ url_for('locations') }}">Locations</a>
-          <a href="{{ url_for('about') }}">About Us</a>
+          <a href="../index.html">Main</a>
+          <a href="../products.html">Products</a>
+          <a href="../gallery.html">Gallery</a>
+          <a href="../delivery.html">Cart</a>
+          <a href="../contacts.html">Contacts</a>
+          <a href="../locations.html">Locations</a>
+          <a href="../about.html">About Us</a>
         </div>
         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
         <a href="javascript:void(0);" class="icon" onclick="navDropDown()">
@@ -40,13 +40,18 @@
       <div id="logo" class="generalLayout">Moti-Moti</div>
       <nav class="generalLayout">
         <ul>
-          <li><a href="{{ url_for('index') }}">Main</a></li>
-          <li><a href="{{ url_for('delivery') }}">Cart</a></li>
-          <li><a href="{{ url_for('about') }}">About Us</a></li>
-          <li><a href="{{ url_for('contacts') }}">Contacts</a></li>
-          <li><a href="{{ url_for('locations') }}">Locations</a></li>
+          <li><a href="../index.html">Main</a></li>
+          <li><a href="../delivery.html">Cart</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+          <li><a href="../locations.html">Locations</a></li>
           {% if logged_in %}
-        <a href="/profile">Profile </a>
+        <li><a href="/profile">Profile ({{ username }})</a></li>
+        <li>
+          <form method="POST" action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
       {% else %}
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
@@ -59,9 +64,9 @@
       <aside class="sidebar">
         <h2>Categories</h2>
           <ul>
-            <li><a href="{{ url_for('products') }}">Products</a></li>
-            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
-            <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../reviews.html">Reviews</a></li>
           </ul>
       </aside>
     </div>

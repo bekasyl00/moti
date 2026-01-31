@@ -1,33 +1,6 @@
 // === jQuery готов ===
 $(document).ready(function () {
-  console.log("jQuery is ready!");
-
-  // === Search Highlighting ===
-  function highlightText($element, keyword) {
-    const text = $element.text();
-    if (!keyword) {
-      $element.html(text);
-      return;
-    }
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    const newHtml = text.replace(regex, '<mark>$1</mark>');
-    $element.html(newHtml);
-  }
-
-  $('#search-input').on('input', function () {
-    const searchText = $(this).val().trim();
-    $('.searchable').each(function () {
-      const $el = $(this);
-      const txt = $el.text().toLowerCase();
-      if (txt.includes(searchText.toLowerCase())) {
-        $el.show();
-        highlightText($el, searchText);
-      } else {
-        $el.hide();
-      }
-    });
-  });
-
+  
   // === Scroll Progress Bar ===
   $(window).on('scroll', function () {
     const scrollTop = $(window).scrollTop();

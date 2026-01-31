@@ -257,4 +257,26 @@ body {
   text-align: center;
   margin: 5px 0;
 }
+a.btn-primary, 
+button.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+a.btn-primary:hover,
+button.btn:hover {
+  background: #ff1493;
+  transform: translateY(-2px);
+}
+
+
 

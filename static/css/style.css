@@ -405,8 +405,12 @@ button.btn:hover {
   background-color: #999999;
   border: #555555 1.5px solid;
 }
-
-
+.dark-mode .card-text {
+  color: #000000;
+}
+.dark-mode .accordion-answer {
+  color: #000000;
+}
 
 
 /* about */

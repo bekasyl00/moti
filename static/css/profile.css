@@ -280,6 +280,9 @@
   background: linear-gradient(90deg, #ff6fb0, #ff2a7a);
   box-shadow: 0 8px 30px rgba(255,40,122,0.06);
 }
+.dark-mode .profile-main{
+  background-color: #2d2d30;
+}
 
 /* --- Адаптив --- */
 @media (max-width: 880px) {
@@ -302,3 +305,4 @@
 }
 
 /* Не затрагиваем header/footer, поэтому никаких глобальных селекторов не используем */
+
